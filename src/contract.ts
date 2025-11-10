@@ -3,7 +3,7 @@ import { Compiler, createMemoryCompilerIoApi } from '@harmoniclabs/pebble';
 import { Script, ScriptType, Address, Credential } from "@harmoniclabs/buildooor";
 import { fromUtf8 } from "@harmoniclabs/uint8array-utils";
 
-const CONTRACT_NAME = 'index.pebble';
+const CONTRACT_NAME = 'src/vesting.pebble';
 
 const CONTRACT = fs.readFileSync(CONTRACT_NAME, 'utf8');
 
@@ -17,7 +17,7 @@ async function compileContract(): Promise<Uint8Array> {
 
   const compiler = new Compiler(ioApi);
 
-  await compiler.compile({ entry: CONTRACT_NAME, root: "/", outDir: 'dist' });
+  await compiler.compile({ entry: CONTRACT_NAME, outDir: 'dist' });
 
   const compiled = ioApi.outputs.get("dist/out.flat");
 
